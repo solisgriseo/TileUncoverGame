@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        section {
+            display: flex;
+        }
+
+        section div {
+            flex-wrap: wrap;
+            gap: 10vw;
+            width: 30vw;
+            height: 40vh;
+            border: 1px solid red;
+            background-color: gray;
+            margin: 1%;
+            text-align: center; 
+            font-size: 3em;
+        }
+
+        .card {
+            background-color: gray;
+            font-size: 0;
+        }
+
+        .cardMatch {
+            background-color: green;
+            visibility: hidden;
+            opacity: 0;
+            transition: all;
+            transition-duration: 500ms;
+        }
+
+        .cardMatchPending {
+            background-color: green;
+        }
+
+        .cardNotMatch {
+            background-color: red;
+            visibility: hidden;
+            opacity: 0;
+            transition: all;
+            transition-duration: 500ms;
+        }
+
+        .cardNotMatchPending {
+            background-color: red;
+        }
+
+        .cardClicked {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="card" onclick="changeBG(this)" id="card1"></div>
+            <div class="card" onclick="changeBG(this)" id="card2"></div>
+            <div class="card" onclick="changeBG(this)" id="card3"></div>
+        </section>
+        <section>
+            <div class="card" onclick="changeBG(this)" id="card4"></div>
+            <div class="card" onclick="changeBG(this)" id="card5"></div>
+            <div class="card" onclick="changeBG(this)" id="card6"></div>
+        </section>
+    </main>
+</body>
+<script src="logic.js"></script>
+</html>
