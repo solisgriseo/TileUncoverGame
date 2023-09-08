@@ -1,0 +1,105 @@
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    font-size: 100%;
+}
+
+section {
+    display: flex;
+    height: 17vh;
+}
+
+section div {
+    flex-wrap: wrap;
+    gap: 10vh;
+    width: 30%;
+    height: 80%;
+    border: 1px solid red;
+    background-color: gray;
+    margin: 0.5%;
+    text-align: center; 
+    font-size: 3em;
+}
+
+.card {
+    background-color: gray;
+    font-size: 0;
+}
+
+.cardMatch {
+    background-color: green;
+    visibility: hidden;
+    opacity: 0;
+    transition: all;
+    transition-duration: 500ms;
+}
+
+.cardMatchPending {
+    background-color: green;
+}
+
+.cardNotMatch {
+    background-color: red;
+    visibility: hidden;
+    opacity: 0;
+    transition: all;
+    transition-duration: 500ms;
+}
+
+.cardNotMatchPending {
+    background-color: red;
+}
+
+.cardClicked {
+    background-color: white;
+}
+
+#title {
+    width: 34%;
+    height: 100%;
+    border: 1px solid black;
+}
+#buttons {
+    width: 34%;
+    height: 100%;
+    border: 1px solid black;
+}
+#timer {
+    width: 34%;
+    height: 100%;
+    border: 1px solid black;
+}
+
+#log {
+    background-color: beige;
+    position: fixed;
+    width: 70vw;
+    height: 70vh;
+    top: 16.5vh;
+    left: 16.5vw;
+    text-align: center;
+}
+
+#log h1 {
+    margin-top: 5%;
+}
+
+#form_layout {
+    border: 1px solid blue;
+    height: 30vh;
+    margin: 6%;
+}
+
+#form_layout input {
+    width: 100%;
+    height: 25%;
+    margin-top: 5%;
+
+}
