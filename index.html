@@ -1,130 +1,142 @@
 <!DOCTYPE html>
-<head>
-    <meta title="author" content="Maranan, G.">
-    <meta title="date" content="8/29/23">
-    <title>Website</title>
-    <style type="text/css">
-        body{
-            margin: 0;
-            background-color: lightgray;
-        }
-        section {
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+
+         section {
+             display: flex;
+         }
+
+         section div {
+             flex-wrap: wrap;
+             gap: 10vw;
+             width: 30vw;
+             height: 10vh;
+             border: 1px solid red;
+             background-color: gray;
+             margin: 1%;
+             text-align: center; 
+             font-size: 3em;
+         }
+
+         .card {
+             background-color: gray;
+             font-size: 0;
+         }
+
+         .cardMatch {
+             background-color: green;
+             visibility: hidden;
+             opacity: 0;
+             transition: all;
+             transition-duration: 500ms;
+         }
+
+         .cardMatchPending {
+             background-color: green;
+         }
+
+         .cardNotMatch {
+             background-color: red;
+             visibility: hidden;
+             opacity: 0;
+             transition: all;
+             transition-duration: 500ms;
+         }
+
+         .cardNotMatchPending {
+             background-color: red;
+         }
+
+         .cardClicked {
+             background-color: white;
+         }
+
+         #menu {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        div{    
-            width: 24vw;
-            height: 50vh;
+            width: 100vw;
+            height: 5vh;
+         }
 
-            margin: 1.5% 3%;
-            box-sizing: border-box;
-        
-            background-image: url("Images/back.webp");
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            transition: visibility 0.7s, opacity 0.7s, border 0.09s;
-        }
-        div:hover{
-            border: solid 2px black;
-        }
-    </style>
-</head>
-<body>
-    <center>
-        <section>
-                <div id="card1" class="spade" onclick="reveal(this.id, this.className)"></div>
-                <div id="card2" class="diamond" onclick="reveal(this.id, this.className)"></div>
-                <div id="card3" class="diamond" onclick="reveal(this.id, this.className)"></div>
-                <div id="card4" class="heart" onclick="reveal(this.id, this.className)"></div>
-                <div id="card5" class="spade" onclick="reveal(this.id, this.className)"></div>
-                <div id="card6" class="heart" onclick="reveal(this.id, this.className)"></div>  
+         #menu div {
+            width: 33%;
+         }
+
+     </style>
+ </head>
+ <body>
+    <div id="menu">
+        <div>Tile Game</div>
+        <div id="buttons">
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        <div id="timer">0:00</div>
+    </div>
+     <main>
+         <section>
+             <div class="card" onclick="changeBG(this)" id="card1"></div>
+             <div class="card" onclick="changeBG(this)" id="card2"></div>
+             <div class="card" onclick="changeBG(this)" id="card3"></div>
+             <div class="card" onclick="changeBG(this)" id="card4"></div>
+             <div class="card" onclick="changeBG(this)" id="card5"></div>
+             <div class="card" onclick="changeBG(this)" id="card6"></div>
+             <div class="card" onclick="changeBG(this)" id="card7"></div>
+             <div class="card" onclick="changeBG(this)" id="card8"></div>
+             <div class="card" onclick="changeBG(this)" id="card9"></div>
+             <div class="card" onclick="changeBG(this)" id="card10"></div>
+         </section>
+         <section>
+            <div class="card" onclick="changeBG(this)" id="card11"></div>
+            <div class="card" onclick="changeBG(this)" id="card12"></div>
+            <div class="card" onclick="changeBG(this)" id="card13"></div>
+            <div class="card" onclick="changeBG(this)" id="card14"></div>
+            <div class="card" onclick="changeBG(this)" id="card15"></div>
+            <div class="card" onclick="changeBG(this)" id="card16"></div>
+            <div class="card" onclick="changeBG(this)" id="card17"></div>
+            <div class="card" onclick="changeBG(this)" id="card18"></div>
+            <div class="card" onclick="changeBG(this)" id="card19"></div>
+            <div class="card" onclick="changeBG(this)" id="card20"></div>
         </section>
-    </center>
-
-    <script type="text/javascript">
-        var open = 0;
-        var matchCounter = 0;
-        var prevCard = "";
-        var currCard = "";
-        var prevCardPick = "";
-        var currCardPick = "";
-
-        function reset(){
-            open = 0;
-            card1.style.backgroundImage = "url('Images/back.webp')";
-            card2.style.backgroundImage = "url('Images/back.webp')";
-            card3.style.backgroundImage = "url('Images/back.webp')";
-            card4.style.backgroundImage = "url('Images/back.webp')";
-            card5.style.backgroundImage = "url('Images/back.webp')";
-            card6.style.backgroundImage = "url('Images/back.webp')";
-            prevCard = "";
-            currCard = "";
-            prevCardPick = "";
-            currCardPick = "";
-        }
-
-        function reveal(cardID, cardClass){
-            if(open == 0){
-                if(cardClass == "spade"){
-                    console.log("spade");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/spade.jpeg')";
-                    match(cardClass, 0, cardID);
-                }
-                if(cardClass == "heart"){
-                    console.log("heart");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/heart.jpeg')";
-                    match(cardClass, 0, cardID);
-                }
-                if(cardClass == "diamond"){
-                    console.log("diamond");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/diamond.jpeg')";
-                    match(cardClass, 0, cardID);
-                }
-                open++;
-            } else if(open == 1){
-                if(cardClass == "spade"){
-                    console.log("spade");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/spade.jpeg')";
-                    match(cardClass, 1, cardID);
-                }
-                if(cardClass == "heart"){
-                    console.log("heart");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/heart.jpeg')";
-                    match(cardClass, 1, cardID);
-                }
-                if(cardClass == "diamond"){
-                    console.log("diamond");
-                    document.getElementById(cardID).style.backgroundImage = "url('Images/diamond.jpeg')";
-                    match(cardClass, 1, cardID);
-                }
-                open++;
-            } else {
-                reset();
-                reveal(cardID, cardClass);
-            }
-        }
-
-        function match(cardClass, num, cardID){
-            if(num == 0){
-                prevCard = cardClass;
-                prevCardPick = cardID;
-            } else if(num == 1){
-                currCard = cardClass;
-                currCardPick = cardID;
-            }
-            
-            if (currCardPick == prevCardPick){
-                open = 0;
-                return 0;
-            } else if(prevCard == currCard){
-                document.getElementById(currCardPick).style.visibility = "hidden";
-                document.getElementById(prevCardPick).style.visibility = "hidden";
-                document.getElementById(currCardPick).style.opacity = 0;
-                document.getElementById(prevCardPick).style.opacity = 0;
-                matchCounter++;
-            }
-        }
-    </script>
-</body>
+        <section>
+            <div class="card" onclick="changeBG(this)" id="card21"></div>
+            <div class="card" onclick="changeBG(this)" id="card22"></div>
+            <div class="card" onclick="changeBG(this)" id="card23"></div>
+            <div class="card" onclick="changeBG(this)" id="card24"></div>
+            <div class="card" onclick="changeBG(this)" id="card25"></div>
+            <div class="card" onclick="changeBG(this)" id="card26"></div>
+            <div class="card" onclick="changeBG(this)" id="card27"></div>
+            <div class="card" onclick="changeBG(this)" id="card28"></div>
+            <div class="card" onclick="changeBG(this)" id="card29"></div>
+            <div class="card" onclick="changeBG(this)" id="card30"></div>
+        </section>
+        <section>
+           <div class="card" onclick="changeBG(this)" id="card31"></div>
+           <div class="card" onclick="changeBG(this)" id="card32"></div>
+           <div class="card" onclick="changeBG(this)" id="card33"></div>
+           <div class="card" onclick="changeBG(this)" id="card34"></div>
+           <div class="card" onclick="changeBG(this)" id="card35"></div>
+           <div class="card" onclick="changeBG(this)" id="card36"></div>
+           <div class="card" onclick="changeBG(this)" id="card37"></div>
+           <div class="card" onclick="changeBG(this)" id="card38"></div>
+           <div class="card" onclick="changeBG(this)" id="card39"></div>
+           <div class="card" onclick="changeBG(this)" id="card40"></div>
+       </section>
+       <section>
+        <div class="card" onclick="changeBG(this)" id="card41"></div>
+        <div class="card" onclick="changeBG(this)" id="card42"></div>
+        <div class="card" onclick="changeBG(this)" id="card43"></div>
+        <div class="card" onclick="changeBG(this)" id="card44"></div>
+        <div class="card" onclick="changeBG(this)" id="card45"></div>
+        <div class="card" onclick="changeBG(this)" id="card46"></div>
+        <div class="card" onclick="changeBG(this)" id="card47"></div>
+        <div class="card" onclick="changeBG(this)" id="card48"></div>
+        <div class="card" onclick="changeBG(this)" id="card49"></div>
+        <div class="card" onclick="changeBG(this)" id="card50"></div>
+    </section>
+     </main>
+ </body>
+ <script src="logic.js"></script>
+ </html> 

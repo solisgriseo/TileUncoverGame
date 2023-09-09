@@ -1,3 +1,11 @@
+let start_game = 0;
+
+function startGame() {
+    start_game = 1;
+    console.log(startGame);
+}
+
+
 let cards = 1;
 let faceUp = 0;
 let previousCard = 4;
@@ -9,43 +17,45 @@ function changeBG(id) {
     let divClass = id.className;
     let divContent = id.innerHTML;
     console.log(notMatchCounter);
-    if (divClass != "cardClicked") {
-        if (faceUp < 1) { //if no card is face up
-            if (matchCounter == 1) {
-                for (let i = 0; i < 2; i++) {
-                    document.querySelector(".cardMatchPending").className = "cardMatch";
+    if (start_game == 1) {
+        if (divClass != "cardClicked") {
+            if (faceUp < 1) { //if no card is face up
+                if (matchCounter == 1) {
+                    for (let i = 0; i < 2; i++) {
+                        document.querySelector(".cardMatchPending").className = "cardMatch";
+                    }
+                    matchCounter = 0;
                 }
-                matchCounter = 0;
-            }
-            if (notMatchCounter == 1) {
-                for (let i = 0; i < 2; i++) {
-                    document.querySelector(".cardNotMatchPending").className = "card";
+                if (notMatchCounter == 1) {
+                    for (let i = 0; i < 2; i++) {
+                        document.querySelector(".cardNotMatchPending").className = "card";
+                    }
+                    notMatchCounter = 0;
                 }
-                notMatchCounter = 0;
+                if (divClass == "card") { //if card is face down
+                    document.querySelector("#" + divId).className = "cardClicked";
+                    console.log("Current: " + divContent);
+                    console.log("Previous: " + previousCard);
+                    previousCard = divContent;
+                    faceUp++
+                }
+            } else { //if 1 card is already face up
+                if(divContent == previousCard) { //if match
+                    console.log("match");
+                    document.querySelector(".cardClicked").className = "cardMatchPending";
+                    document.querySelector("#" + divId).className = "cardMatchPending";
+                    matchCounter++
+                } else if (previousCard != 4) {
+                    console.log("Not a Match");
+                    document.querySelector(".cardClicked").className = "cardNotMatchPending";
+                    document.querySelector("#" + divId).className = "cardNotMatchPending";
+                    notMatchCounter++
+                }  
+                faceUp = 0;
+                previousCard = 4; 
             }
-            if (divClass == "card") { //if card is face down
-                document.querySelector("#" + divId).className = "cardClicked";
-                console.log("Current: " + divContent);
-                console.log("Previous: " + previousCard);
-                previousCard = divContent;
-                faceUp++
-            }
-        } else { //if 1 card is already face up
-            if(divContent == previousCard) { //if match
-                console.log("match");
-                document.querySelector(".cardClicked").className = "cardMatchPending";
-                document.querySelector("#" + divId).className = "cardMatchPending";
-                matchCounter++
-            } else if (previousCard != 4) {
-                console.log("Not a Match");
-                document.querySelector(".cardClicked").className = "cardNotMatchPending";
-                document.querySelector("#" + divId).className = "cardNotMatchPending";
-                notMatchCounter++
-            }  
-            faceUp = 0;
-            previousCard = 4; 
+            console.log("Face Up: " + faceUp);
         }
-        console.log("Face Up: " + faceUp);
     }
 }
 
