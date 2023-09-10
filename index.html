@@ -75,17 +75,18 @@
          }
 
          #formLayout {
-            margin: 10%;
+            margin: auto;
+            margin-top: 3%;
             display: flex;
             flex-wrap: wrap;
             width: 80%;
-            height: 80%;
+            height: 70%;
             border: 1px red solid;
          }
 
          #formLayout input {
             width: 100%;
-            margin-bottom: 5%;
+            margin-bottom: 2%;
          }
 
          #formLayout button {
@@ -165,16 +166,14 @@
     </section>
      </main>
      <div id="log">
-        <form action="">
-            <h1>TILE GAME</h1>
-            <div id="formLayout">
-                <p>Name:</p>
-                <input type="text" placeholder="Enter Your Name...">
-                <p>Contact Number:</p>
-                <input type="number" placeholder="Enter Your Contact Number...">
+        <h1>TILE GAME</h1>
+        <div id="formLayout">
+            <p>Name:</p>
+            <input type="text" id="name" placeholder="Enter Your Name...">
+            <p>Contact Number:</p>
+            <input type="number" id="number" placeholder="Enter Your Contact Number...">
             <button onclick="getInfo()">Start Game</button>
-            </div>
-        </form>
+        </div>
      </div>
  </body>
  <script src="logic.js"></script>
