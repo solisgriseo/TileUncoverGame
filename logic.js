@@ -1,9 +1,9 @@
 let time = 0;
-    let time_fmt = "0:00";
+let time_fmt = "0:00";
+let pRank = 0;
 
-    function timer() {
-        document.querySelector("#timer").innerHTML = time_fmt;
-        time++  
+function timer() {
+    if (endGame_i != 1) {
         if (time < 60 && time < 10) {
             time_fmt = "0:0" + time;
         } else if (time < 60 && time >= 10) {
@@ -19,9 +19,13 @@ let time = 0;
                 time_fmt = minutes + ":" + leftover;
             }
         }
-        console.log(time_fmt);
+        document.querySelector("#timer").innerHTML = "<h3>" + time_fmt + "</h3>";
+        time++  
+    } else {
+        document.querySelector("#playerScore").innerHTML = "Your Time: " + time_fmt;
+        document.querySelector("#playerRank").innerHTML = "Rank: #" + pRank;
     }
-    
+}
 let start_game = 0;
 function startGame() {
     start_game = 1;
@@ -31,9 +35,9 @@ function startGame() {
 
 {
     let cards_i = 1;
-    let cards = 10;
+    let cards = 50;
     let faceUp = 0;
-    let previousCard = 6;
+    let previousCard = 26;
     let matchCounter = 0;
     let matches = 1;
     let notMatchCounter = 0;
@@ -74,6 +78,7 @@ function startGame() {
                         } else {
                             document.querySelector(".cardClicked").className = "cardMatch";
                             document.querySelector("#" + divId).className = "cardMatch";  
+                            endGame();
                             console.log("YOU WIN");  
                         }
                         console.log(matches);
@@ -92,6 +97,9 @@ function startGame() {
             }
         }
     }
+
+
+
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -118,4 +126,15 @@ function startGame() {
     }  
 }
 
+let endGame_i = 0;
 
+function endGame() {
+    endGame_i = 1;
+    document.querySelector("#victoryScreen").style.visibility = "visible"
+    setCookie(Pname, PcontactNumber + "/" + time_fmt + "|" + time);
+    getLeaderboard();
+}
+
+function reset() {
+    location.reload();
+}
