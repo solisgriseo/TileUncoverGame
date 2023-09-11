@@ -84,14 +84,14 @@ function startGame() {
                         console.log(matches);
                         matchCounter++
                         matches++
-                    } else if (previousCard != 6) {
+                    } else if (previousCard != 26) {
                         console.log("Not a Match");
                         document.querySelector(".cardClicked").className = "cardNotMatchPending";
                         document.querySelector("#" + divId).className = "cardNotMatchPending";
                         notMatchCounter++
                     }  
                     faceUp = 0;
-                    previousCard = 6; 
+                    previousCard = 26; 
                 }
                 console.log("Face Up: " + faceUp);
             }
